@@ -91,8 +91,8 @@ export default function CommunityPage() {
                 <p className="text-sand-200 text-sm leading-relaxed">{r.text}</p>
                 <div className="flex items-center gap-4 mt-4 pt-3 border-t border-dark-border/30">
                   <motion.button whileTap={{ scale: 0.9 }} onClick={() => toggleReflectionLike(r.id)}
-                    className={`flex items-center gap-1.5 text-xs ${r.liked ? 'text-gold-400' : 'text-sand-500 hover:text-gold-400'}`}>
-                    <Heart size={14} fill={r.liked ? 'currentColor' : 'none'} /><span>{r.likes}</span>
+                    className={`flex items-center gap-1.5 text-xs ${('liked' in r && r.liked) ? 'text-gold-400' : 'text-sand-500 hover:text-gold-400'}`}>
+                    <Heart size={14} fill={('liked' in r && r.liked) ? 'currentColor' : 'none'} /><span>{r.likes}</span>
                   </motion.button>
                   <motion.button whileTap={{ scale: 0.9 }} onClick={() => toggleBookmark(r.id)}
                     className={`flex items-center gap-1.5 text-xs ${saved ? 'text-gold-400' : 'text-sand-500 hover:text-gold-400'}`}>
