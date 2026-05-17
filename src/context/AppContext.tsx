@@ -53,15 +53,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
-  // Persist changes
-  useEffect(() => { if (hydrated) store.set('habits', habits); }, [habits, hydrated]);
-  useEffect(() => { if (hydrated) store.set('duas', duas); }, [duas, hydrated]);
-  useEffect(() => { if (hydrated) store.set('reflections', reflections); }, [reflections, hydrated]);
-  useEffect(() => { if (hydrated) store.set('bookmarks', bookmarks); }, [bookmarks, hydrated]);
-  useEffect(() => { if (hydrated) store.set('tasks', completedTasks); }, [completedTasks, hydrated]);
+
 
   const toggleHabit = useCallback((day: number, id: string) => {
-    setHabits(p => ({ ...p, [day]: { ...p[day], [id]: !p[day]?.[id] } }));
+    setHabits(p => {
+      const next = { ...p, [day]: { ...p[day], [id]: !p[day]?.[id] } };
+      store.set('habits', next);
+      return next;
+    });
   }, []);
 
   const getHabitStatus = useCallback((day: number, id: string) => habits[day]?.[id] || false, [habits]);
@@ -82,24 +81,59 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const toggleTask = useCallback((day: number, idx: number) => {
     setCompletedTasks(p => {
       const arr = p[day] || [];
-      return { ...p, [day]: arr.includes(idx) ? arr.filter(i => i !== idx) : [...arr, idx] };
+      const nextArr = arr.includes(idx) ? arr.filter(i => i !== idx) : [...arr, idx];
+      const next = { ...p, [day]: nextArr };
+      store.set('tasks', next);
+      return next;
     });
   }, []);
 
   const isTaskCompleted = useCallback((day: number, idx: number) => (completedTasks[day] || []).includes(idx), [completedTasks]);
 
-  const addDua = useCallback((d: Dua) => setDuas(p => [d, ...p]), []);
-  const updateDua = useCallback((id: string, u: Partial<Dua>) => setDuas(p => p.map(d => d.id === id ? { ...d, ...u } : d)), []);
-  const deleteDua = useCallback((id: string) => setDuas(p => p.filter(d => d.id !== id)), []);
-  const toggleDuaFavorite = useCallback((id: string) => setDuas(p => p.map(d => d.id === id ? { ...d, isFavorite: !d.isFavorite } : d)), []);
+  const addDua = useCallback((d: Dua) => setDuas(p => {
+    const next = [d, ...p];
+    store.set('duas', next);
+    return next;
+  }), []);
+  
+  const updateDua = useCallback((id: string, u: Partial<Dua>) => setDuas(p => {
+    const next = p.map(d => d.id === id ? { ...d, ...u } : d);
+    store.set('duas', next);
+    return next;
+  }), []);
+  
+  const deleteDua = useCallback((id: string) => setDuas(p => {
+    const next = p.filter(d => d.id !== id);
+    store.set('duas', next);
+    return next;
+  }), []);
+  
+  const toggleDuaFavorite = useCallback((id: string) => setDuas(p => {
+    const next = p.map(d => d.id === id ? { ...d, isFavorite: !d.isFavorite } : d);
+    store.set('duas', next);
+    return next;
+  }), []);
 
-  const addReflection = useCallback((r: Reflection) => setReflections(p => [r, ...p]), []);
+  const addReflection = useCallback((r: Reflection) => setReflections(p => {
+    const next = [r, ...p];
+    store.set('reflections', next);
+    return next;
+  }), []);
+  
   const toggleReflectionLike = useCallback((id: string) => {
-    setReflections(p => p.map(r => r.id === id ? { ...r, likes: r.liked ? r.likes - 1 : r.likes + 1, liked: !r.liked } : r));
+    setReflections(p => {
+      const next = p.map(r => r.id === id ? { ...r, likes: r.liked ? r.likes - 1 : r.likes + 1, liked: !r.liked } : r);
+      store.set('reflections', next);
+      return next;
+    });
   }, []);
 
   const toggleBookmark = useCallback((id: string) => {
-    setBookmarks(p => p.includes(id) ? p.filter(b => b !== id) : [...p, id]);
+    setBookmarks(p => {
+      const next = p.includes(id) ? p.filter(b => b !== id) : [...p, id];
+      store.set('bookmarks', next);
+      return next;
+    });
   }, []);
   const isBookmarked = useCallback((id: string) => bookmarks.includes(id), [bookmarks]);
 
