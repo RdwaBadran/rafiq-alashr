@@ -1,7 +1,7 @@
 import { createBrowserClient } from '@supabase/ssr';
 
 /**
- * Supabase browser client — used in client components.
+ * Supabase browser client - used in client components.
  * Configure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local
  */
 export function createClient() {

@@ -26,7 +26,7 @@ export default function HabitsPage() {
         <div>
           <p className="text-sand-500 text-xs uppercase tracking-wider">متابعة العبادات</p>
           <h1 className="text-2xl font-bold text-sand-50 mt-1">رحلتك مع العبادة</h1>
-          <p className="text-sand-400 text-sm mt-1">كل جهد صغير مرئيّ ومُكافأ 💚</p>
+          <p className="text-sand-400 text-sm mt-1">كل جهد صغير مرئيّ ومُكافأ</p>
         </div>
 
         <DaySelector />
@@ -58,7 +58,7 @@ export default function HabitsPage() {
                     </div>
                     <p className="text-sand-500 text-xs mt-0.5">{h.description}</p>
                   </div>
-                  {done && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-gold-400 text-sm font-medium">✓ تمّ</motion.div>}
+                  {done && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-gold-400 text-sm font-medium">تمّ ✓</motion.div>}
                 </div>
               </motion.div>
             );
@@ -67,7 +67,7 @@ export default function HabitsPage() {
 
         {/* 10-Day Grid */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-card p-5">
-          <h3 className="text-sand-200 font-semibold text-base mb-4">نظرة شاملة — ١٠ أيام</h3>
+          <h3 className="text-sand-200 font-semibold text-base mb-4">نظرة شاملة - ١٠ أيام</h3>
           <div className="grid grid-cols-5 gap-2">
             {Array.from({ length: 10 }, (_, i) => {
               const day = i + 1; const dc = getDayCompletion(day); const isCur = day === currentDay;
@@ -78,7 +78,7 @@ export default function HabitsPage() {
                     <motion.div initial={{ width: 0 }} animate={{ width: `${dc}%` }} transition={{ duration: 0.8, delay: i * 0.05 }}
                       className={`h-full rounded-full ${dc >= 80 ? 'bg-gold-400' : dc >= 50 ? 'bg-primary-400' : dc > 0 ? 'bg-primary-600' : ''}`} />
                   </div></div>
-                  <p className={`text-xs mt-1 ${dc >= 80 ? 'text-gold-400' : 'text-sand-600'}`}>{dc > 0 ? `${dc}%` : '—'}</p>
+                  <p className={`text-xs mt-1 ${dc >= 80 ? 'text-gold-400' : 'text-sand-600'}`}>{dc > 0 ? `${dc}%` : '-'}</p>
                 </div>
               );
             })}
@@ -87,7 +87,7 @@ export default function HabitsPage() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="text-center py-4">
           <p className="text-sand-500 text-sm italic">
-            {comp >= 80 ? 'ماشاء الله! أداؤك رائع اليوم 🌟' : comp >= 50 ? 'تقدّم ممتاز! كل عمل يُحسب 💚' : comp > 0 ? 'بدأت — وهذا هو الأهم. واصل! 🌿' : 'خطوة بخطوة. حتى خانة واحدة هي انتصار 🤲'}
+            {comp >= 80 ? 'ماشاء الله! أداؤك رائع اليوم' : comp >= 50 ? 'تقدّم ممتاز! كل عمل يُحسب' : comp > 0 ? 'بدأت - وهذا هو الأهم. واصل!' : 'خطوة بخطوة. حتى خانة واحدة هي انتصار'}
           </p>
         </motion.div>
       </div>

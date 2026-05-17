@@ -69,13 +69,13 @@ export default function GuidancePage() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-5 text-center">
-          <span className="text-2xl mb-2 block">💡</span>
+          <span className="text-2xl mb-2 block"></span>
           <h2 className="text-sand-200 font-semibold text-base mb-2">تذكير اليوم</h2>
           <p className="text-sand-400 text-sm leading-relaxed max-w-md mx-auto">{g.reminder}</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="glass-card p-5">
-          <h2 className="text-sand-200 font-semibold text-base mb-3 text-center">🤲 دعاء اليوم</h2>
+          <h2 className="text-sand-200 font-semibold text-base mb-3 text-center"> دعاء اليوم</h2>
           <div className="glass-card-light p-5 text-center space-y-3">
             <p className="text-gold-300 text-xl leading-relaxed">{g.dua.arabic}</p>
             {g.dua.source && <p className="text-sand-500 text-xs">{g.dua.source}</p>}

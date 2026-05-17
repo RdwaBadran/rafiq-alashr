@@ -21,7 +21,7 @@ export default function CommunityPage() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!text.trim()) return;
-    if (!isContentSafe(text)) { setErr('يرجى الالتزام بإرشادات المجتمع 💚'); return; }
+    if (!isContentSafe(text)) { setErr('يرجى الالتزام بإرشادات المجتمع '); return; }
     addReflection({ id: generateId(), text: text.trim(), mood, timestamp: Date.now(), likes: 0, liked: false, isAnonymous: anon, author: anon ? 'مجهول' : 'أنت' });
     setText(''); setMood('grateful'); setErr(''); setShowForm(false);
   };
@@ -31,7 +31,7 @@ export default function CommunityPage() {
       <div className="bg-orb w-72 h-72 bg-primary-500/15 top-0 left-0" />
       <div className="relative z-10 max-w-2xl mx-auto px-4 pt-6 pb-8 space-y-6">
         <div><p className="text-sand-500 text-xs uppercase tracking-wider">المجتمع</p>
-          <h1 className="text-2xl font-bold text-sand-50">تأمّلات 🕊️</h1>
+          <h1 className="text-2xl font-bold text-sand-50">تأمّلات ️</h1>
           <p className="text-sand-400 text-sm">مساحة هادئة لمشاركة أفكارك في الأيام المباركة.</p>
         </div>
 
@@ -49,7 +49,7 @@ export default function CommunityPage() {
         <AnimatePresence>
           {showGuide && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="glass-card p-5 overflow-hidden">
-              <h3 className="text-sand-200 font-semibold text-base mb-3">إرشادات المجتمع 💚</h3>
+              <h3 className="text-sand-200 font-semibold text-base mb-3">إرشادات المجتمع </h3>
               <ul className="space-y-2">{communityGuidelines.map((g, i) => <li key={i} className="flex items-start gap-2 text-sand-400 text-sm"><span className="text-primary-400 mt-0.5">•</span>{g}</li>)}</ul>
             </motion.div>
           )}
@@ -83,7 +83,7 @@ export default function CommunityPage() {
               <motion.div key={r.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="glass-card p-5">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary-600/30 flex items-center justify-center"><span className="text-sm">{r.isAnonymous ? '🕊️' : '💚'}</span></div>
+                    <div className="w-8 h-8 rounded-full bg-primary-600/30 flex items-center justify-center"><span className="text-sm">{r.isAnonymous ? '️' : ''}</span></div>
                     <div><p className="text-sand-300 text-xs font-medium">{r.author}</p><p className="text-sand-600 text-[10px]">{timeAgo(r.timestamp)}</p></div>
                   </div>
                   {m && <span className={`mood-tag ${m.color}`}>{m.emoji} {m.label}</span>}
@@ -103,7 +103,7 @@ export default function CommunityPage() {
             );
           })}
         </div>
-        <p className="text-sand-600 text-xs text-center py-6">مساحة رقمية هادئة للتأمّلات الصادقة في الأيام المباركة 🕊️</p>
+        <p className="text-sand-600 text-xs text-center py-6">مساحة رقمية هادئة للتأمّلات الصادقة في الأيام المباركة ️</p>
       </div>
     </div>
   );

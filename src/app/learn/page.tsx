@@ -18,13 +18,13 @@ export default function LearnPage() {
       <div className="bg-orb w-80 h-80 bg-primary-600/15 top-0 left-0" />
       <div className="relative z-10 max-w-2xl mx-auto px-4 pt-6 pb-8 space-y-6">
         <div><p className="text-sand-500 text-xs uppercase tracking-wider">المعرفة</p>
-          <h1 className="text-2xl font-bold text-sand-50 mt-1">تعلّم وانمُ ✨</h1>
+          <h1 className="text-2xl font-bold text-sand-50 mt-1">تعلّم وانمُ</h1>
           <p className="text-sand-400 text-sm mt-1">معرفة بسيطة وسهلة لهذه الأيام المباركة.</p>
         </div>
 
         <div className="flex gap-2">
-          <button onClick={() => setTab('learn')} className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all ${tab === 'learn' ? 'bg-primary-600/30 text-gold-400 border border-primary-500/30' : 'text-sand-400 hover:bg-primary-700/20'}`}>📚 تعلّم</button>
-          <button onClick={() => setTab('avoid')} className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all ${tab === 'avoid' ? 'bg-primary-600/30 text-gold-400 border border-primary-500/30' : 'text-sand-400 hover:bg-primary-700/20'}`}>🛡️ تجنّب</button>
+          <button onClick={() => setTab('learn')} className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all ${tab === 'learn' ? 'bg-primary-600/30 text-gold-400 border border-primary-500/30' : 'text-sand-400 hover:bg-primary-700/20'}`}>تعلّم</button>
+          <button onClick={() => setTab('avoid')} className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all ${tab === 'avoid' ? 'bg-primary-600/30 text-gold-400 border border-primary-500/30' : 'text-sand-400 hover:bg-primary-700/20'}`}>تجنّب</button>
         </div>
 
         <AnimatePresence mode="wait">
@@ -57,7 +57,7 @@ export default function LearnPage() {
           {tab === 'avoid' && (
             <motion.div key="avoid" variants={stagger} initial="hidden" animate="show" exit={{ opacity: 0 }} className="space-y-3">
               <motion.div variants={fadeUp} className="glass-card p-5 text-center border-r-2 border-gold-500/30">
-                <p className="text-sand-400 text-sm leading-relaxed">تذكيرات لطيفة لحماية طاقتك الروحية. بدون إحراج — فقط وعي وبدائل عملية 💚</p>
+                <p className="text-sand-400 text-sm leading-relaxed">تذكيرات لطيفة لحماية طاقتك الروحية. بدون إحراج - فقط وعي وبدائل عملية</p>
               </motion.div>
               {avoidItems.map((item, idx) => {
                 const isExp = expandedAvoid === idx;
@@ -77,7 +77,7 @@ export default function LearnPage() {
                       <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                         <div className="px-5 pb-5 pr-16 space-y-3">
                           <p className="text-sand-400 text-sm leading-relaxed">{item.description}</p>
-                          <div className="glass-card-light p-3"><p className="text-xs text-primary-400 font-medium mb-1">💡 جرّب هذا بدلاً من ذلك:</p>
+                          <div className="glass-card-light p-3"><p className="text-xs text-primary-400 font-medium mb-1">جرّب هذا بدلاً من ذلك:</p>
                             <p className="text-sand-300 text-sm leading-relaxed">{item.alternative}</p></div>
                         </div>
                       </motion.div>

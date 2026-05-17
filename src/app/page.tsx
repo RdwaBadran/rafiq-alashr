@@ -51,7 +51,7 @@ export default function HomePage() {
             <div className="flex-1">
               <h3 className="text-sand-200 font-semibold text-base mb-1">تقدّم اليوم</h3>
               <p className="text-sand-500 text-sm">
-                {comp === 0 ? 'ابدأ رحلتك اليوم' : comp < 50 ? 'أنت في الطريق الصحيح!' : comp < 100 ? 'ماشاء الله! أوشكت!' : 'سبحان الله! أكملت الكل! 🌟'}
+                {comp === 0 ? 'ابدأ رحلتك اليوم' : comp < 50 ? 'أنت في الطريق الصحيح!' : comp < 100 ? 'ماشاء الله! أوشكت!' : 'سبحان الله! أكملت الكل!'}
               </p>
               {streak > 0 && <div className="flex items-center gap-1.5 mt-2"><Flame size={14} className="text-gold-400" /><span className="text-gold-400 text-xs font-medium">{streak} أيام متتالية</span></div>}
             </div>
@@ -95,7 +95,7 @@ export default function HomePage() {
 
         {/* Dua */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="glass-card p-5">
-          <h3 className="text-sand-200 font-semibold text-base mb-3 text-center">🤲 دعاء اليوم</h3>
+          <h3 className="text-sand-200 font-semibold text-base mb-3 text-center">دعاء اليوم</h3>
           <div className="glass-card-light p-4 text-center space-y-2">
             <p className="text-gold-300 text-xl leading-relaxed">{g.dua.arabic}</p>
             {g.dua.source && <p className="text-sand-500 text-xs">{g.dua.source}</p>}
@@ -105,7 +105,7 @@ export default function HomePage() {
         {/* Avoid */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85 }}
           className="glass-card p-5 border-r-2 border-gold-500/30">
-          <h3 className="text-sand-200 font-semibold text-base mb-2 flex items-center gap-2"><span className="text-lg">🛡️</span> تذكير لطيف</h3>
+          <h3 className="text-sand-200 font-semibold text-base mb-2 flex items-center gap-2">تذكير لطيف</h3>
           <p className="text-sand-400 text-sm leading-relaxed">{g.avoid}</p>
         </motion.div>
 

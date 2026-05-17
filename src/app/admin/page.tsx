@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Users, FileText, BarChart3, Settings, AlertTriangle } from 'lucide-react';
 
-/** Admin panel — content management, report review, analytics overview */
+/** Admin panel - content management, report review, analytics overview */
 export default function AdminPage() {
   const [tab, setTab] = useState<'overview' | 'content' | 'reports' | 'users'>('overview');
 
   const stats = [
-    { label: 'المستخدمون', value: '—', icon: Users, color: 'text-primary-400' },
-    { label: 'التأمّلات', value: '—', icon: FileText, color: 'text-gold-400' },
-    { label: 'البلاغات', value: '—', icon: AlertTriangle, color: 'text-red-400' },
-    { label: 'الأدعية', value: '—', icon: BarChart3, color: 'text-sand-300' },
+    { label: 'المستخدمون', value: '-', icon: Users, color: 'text-primary-400' },
+    { label: 'التأمّلات', value: '-', icon: FileText, color: 'text-gold-400' },
+    { label: 'البلاغات', value: '-', icon: AlertTriangle, color: 'text-red-400' },
+    { label: 'الأدعية', value: '-', icon: BarChart3, color: 'text-sand-300' },
   ];
 
   const tabs = [

@@ -14,7 +14,7 @@ export default function CountdownTimer({ targetDay, label, compact = false }: { 
     return (
       <div className={`text-center ${compact ? '' : 'py-4'}`}>
         <p className="text-gold-400 font-medium text-sm">{label}</p>
-        <p className="text-sand-200 text-lg font-semibold mt-1">اليوم! 🌟</p>
+        <p className="text-sand-200 text-lg font-semibold mt-1">اليوم! </p>
       </div>
     );
   }

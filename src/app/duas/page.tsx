@@ -37,7 +37,7 @@ export default function DuasPage() {
       <div className="relative z-10 max-w-2xl mx-auto px-4 pt-6 pb-8 space-y-6">
         <div>
           <p className="text-sand-500 text-xs uppercase tracking-wider">منظّم أدعية عرفة</p>
-          <h1 className="text-2xl font-bold text-sand-50 mt-1">أدعيتك 🤲</h1>
+          <h1 className="text-2xl font-bold text-sand-50 mt-1">أدعيتك </h1>
           <p className="text-sand-400 text-sm mt-1">جهّز قلبك ليوم عرفة. اكتب أدعيتك بصدق.</p>
         </div>
 
@@ -71,7 +71,7 @@ export default function DuasPage() {
                 <button type="button" onClick={reset} className="text-sand-500 hover:text-sand-300"><X size={18} /></button>
               </div>
               <input type="text" placeholder="العنوان (اختياري)" value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} className="input-field" />
-              <textarea placeholder="اكتب دعاءك هنا... افتح قلبك لله 🤲" value={form.text} onChange={e => setForm(p => ({ ...p, text: e.target.value }))} className="input-field min-h-[120px] resize-y" required />
+              <textarea placeholder="اكتب دعاءك هنا... افتح قلبك لله " value={form.text} onChange={e => setForm(p => ({ ...p, text: e.target.value }))} className="input-field min-h-[120px] resize-y" required />
               <div>
                 <p className="text-sand-400 text-xs mb-2">التصنيف</p>
                 <div className="flex flex-wrap gap-2">
@@ -113,11 +113,11 @@ export default function DuasPage() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
               <Heart size={40} className="mx-auto text-sand-600 mb-4" />
               <h3 className="text-sand-400 font-medium mb-1">{duas.length === 0 ? 'قائمة أدعيتك فارغة' : 'لا نتائج'}</h3>
-              <p className="text-sand-600 text-sm">{duas.length === 0 ? 'ابدأ بكتابة أدعيتك ليوم عرفة. كل دعاء مهمّ 🤲' : 'جرّب تعديل البحث أو الفلتر'}</p>
+              <p className="text-sand-600 text-sm">{duas.length === 0 ? 'ابدأ بكتابة أدعيتك ليوم عرفة. كل دعاء مهمّ ' : 'جرّب تعديل البحث أو الفلتر'}</p>
             </motion.div>
           )}
         </div>
-        {duas.length > 0 && <p className="text-sand-500 text-sm italic text-center py-4">لديك {duas.length} دعاء جاهز ليوم عرفة. ماشاء الله! 💚</p>}
+        {duas.length > 0 && <p className="text-sand-500 text-sm italic text-center py-4">لديك {duas.length} دعاء جاهز ليوم عرفة. ماشاء الله! </p>}
       </div>
     </div>
   );

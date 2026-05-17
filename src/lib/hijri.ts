@@ -8,7 +8,9 @@
 // Update this date each year or fetch from an Islamic calendar API
 const DHUL_HIJJAH_CONFIG = {
   year: 1447,
-  gregorianStart: new Date('2026-05-18T00:00:00'),
+  // Use Explicit local date construction to avoid timezone shifts
+  // 2026-05-18 = May 18, 2026
+  gregorianStart: new Date(2026, 4, 18, 0, 0, 0), // Month is 0-indexed (4 = May)
 };
 
 export function getHijriDate(): { day: number; month: number; year: number; monthName: string } {
@@ -41,19 +43,17 @@ function getHijriMonthNumber(name: string): number {
 
 /** Get current Dhul Hijjah day (1-10), or 0 if not in Dhul Hijjah season */
 export function getDhulHijjahDay(): number {
-  const hijri = getHijriDate();
-  // If we're in Dhul Hijjah and within the first 10 days
-  if (hijri.month === 12 && hijri.day >= 1 && hijri.day <= 10) {
-    return hijri.day;
-  }
-  // Fallback: calculate from configured start date for demo
   const now = new Date();
   now.setHours(0, 0, 0, 0);
   const start = new Date(DHUL_HIJJAH_CONFIG.gregorianStart);
   start.setHours(0, 0, 0, 0);
-  const diff = Math.floor((now.getTime() - start.getTime()) / 86400000);
-  if (diff >= 0 && diff < 10) return diff + 1;
-  // Demo mode: default to day 1
+  
+  const diffTime = now.getTime() - start.getTime();
+  const diffDays = Math.floor(diffTime / 86400000);
+  
+  if (diffDays >= 0 && diffDays < 10) return diffDays + 1;
+  
+  // Default to day 1 if we're not currently in the period
   return 1;
 }
 
@@ -64,6 +64,8 @@ export function getCountdown(targetDay: number) {
   start.setHours(0, 0, 0, 0);
   const target = new Date(start);
   target.setDate(target.getDate() + (targetDay - 1));
+  
+  // If we are looking for Arafah (day 9) or Eid (day 10), we count down to the START of that day.
   const diff = target.getTime() - now.getTime();
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true };
   return {
