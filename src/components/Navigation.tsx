@@ -2,7 +2,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Home, BookOpen, CheckSquare, Heart, Users, Sparkles, UserCircle } from 'lucide-react';
+import { Home, BookOpen, CheckSquare, Heart, Users, Sparkles, UserCircle, LogOut } from 'lucide-react';
+import { createClient } from '@/lib/supabase/client';
+import { useEffect, useState } from 'react';
 
 const items = [
   { path: '/', icon: Home, label: 'الرئيسية' },
@@ -15,6 +17,23 @@ const items = [
 
 export default function Navigation() {
   const pathname = usePathname();
+  const router = import('next/navigation').then(m => m.useRouter); // Lazy or just use standard hooks
+  const [user, setUser] = useState<any>(null);
+  const supabase = createClient();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, [supabase.auth]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = '/login';
+  };
+
   return (
     <>
       {/* Mobile bottom nav */}
@@ -36,10 +55,17 @@ export default function Navigation() {
                 </Link>
               );
             })}
-            <Link href="/login" className={`flex flex-col items-center gap-0.5 py-2 px-3 ${pathname === '/login' ? 'text-gold-400' : 'text-sand-400'}`}>
-              <UserCircle size={20} />
-              <span className="text-[10px] font-medium">حسابي</span>
-            </Link>
+            {user ? (
+              <button onClick={handleLogout} className={`flex flex-col items-center gap-0.5 py-2 px-3 text-sand-400`}>
+                <LogOut size={20} />
+                <span className="text-[10px] font-medium">خروج</span>
+              </button>
+            ) : (
+              <Link href="/login" className={`flex flex-col items-center gap-0.5 py-2 px-3 ${pathname === '/login' ? 'text-gold-400' : 'text-sand-400'}`}>
+                <UserCircle size={20} />
+                <span className="text-[10px] font-medium">دخول</span>
+              </Link>
+            )}
           </div>
         </div>
       </nav>
@@ -73,10 +99,17 @@ export default function Navigation() {
             })}
           </div>
           <div className="mt-auto px-2">
-            <Link href="/login" className="flex items-center gap-3 px-3 py-3 rounded-xl text-sand-400 hover:text-gold-400 hover:bg-gold-500/10 transition-all">
-              <UserCircle size={20} />
-              <span className="hidden lg:block text-sm font-medium">تسجيل الدخول</span>
-            </Link>
+            {user ? (
+              <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sand-400 hover:text-red-400 hover:bg-red-500/10 transition-all">
+                <LogOut size={20} />
+                <span className="hidden lg:block text-sm font-medium">تسجيل الخروج</span>
+              </button>
+            ) : (
+              <Link href="/login" className="flex items-center gap-3 px-3 py-3 rounded-xl text-sand-400 hover:text-gold-400 hover:bg-gold-500/10 transition-all">
+                <UserCircle size={20} />
+                <span className="hidden lg:block text-sm font-medium">تسجيل الدخول</span>
+              </Link>
+            )}
             <p className="hidden lg:block text-xs text-sand-600 text-center mt-4">بسم الله الرحمن الرحيم</p>
           </div>
         </div>
