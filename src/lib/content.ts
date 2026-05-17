@@ -286,6 +286,7 @@ export const sampleReflections = [
     mood: "grateful",
     timestamp: Date.now() - 3600000,
     likes: 12,
+    liked: false,
     isAnonymous: false,
     author: "روح متفائلة"
   },
@@ -295,6 +296,7 @@ export const sampleReflections = [
     mood: "reflective",
     timestamp: Date.now() - 7200000,
     likes: 24,
+    liked: false,
     isAnonymous: true,
     author: "مجهول"
   },
@@ -304,6 +306,7 @@ export const sampleReflections = [
     mood: "hopeful",
     timestamp: Date.now() - 10800000,
     likes: 45,
+    liked: false,
     isAnonymous: false,
     author: "عبد الله"
   },
@@ -313,6 +316,7 @@ export const sampleReflections = [
     mood: "motivated",
     timestamp: Date.now() - 14400000,
     likes: 18,
+    liked: false,
     isAnonymous: false,
     author: "مؤمن مجتهد"
   }
