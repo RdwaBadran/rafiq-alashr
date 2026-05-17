@@ -38,7 +38,11 @@ export default function LoginPage() {
         router.push('/');
       }
     } catch (err: any) {
-      setError(err.message || 'حدث خطأ أثناء تسجيل الدخول');
+      if (err.message?.includes('rate limit')) {
+        setError('تم تجاوز الحد الأقصى لإرسال رسائل البريد الإلكتروني. يرجى المحاولة لاحقاً، أو تعطيل "تأكيد البريد الإلكتروني" في إعدادات Supabase للاختبار.');
+      } else {
+        setError(err.message || 'حدث خطأ أثناء تسجيل الدخول');
+      }
     } finally {
       setIsLoading(false);
     }
